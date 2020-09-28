@@ -1,0 +1,215 @@
+﻿<div class="container" ng-controller="consultaCtrl">
+    @* INÍCIO DIV - panel panel-info *@
+    <div class="panel panel-info">
+        <div class="panel-heading">Consultas</div>
+        <div class="panel-body">
+            <button type="button" class="btn btn-info" data-target="#AdicionarConsulta" data-toggle="modal">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+        </div>
+        <table class="table table-bordered">
+            <thead style="background-color:aquamarine;">
+                <tr>
+                    <th class="text-center">Id</th>
+                    <th class="text-center">Paciente</th>
+                    <th class="text-center">Data de Nascimento</th>
+                    <th class="text-center">Medico</th>
+                    <th class="text-center">Especialidade</th>
+                    <th class="text-center">Data Incio Consulta</th>
+                    <th class="text-center">Horario Incio</th>
+                    <th class="text-center">Data Fim Consulta</th>
+                    <th class="text-center">Horario Fim</th>
+                    <th class="text-center">Observações</th>
+                    <th class="text-center">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="func in Consultas">
+                    <td class="text-center">{{func.ConsultaId}}</td>
+                    <td class="text-center">{{func.Paciente}}</td>
+                    <td class="text-center">{{func.Data_Nascimento}}</td>
+                    <td class="text-center">{{func.Medico}}</td>
+                    <td class="text-center">{{func.Especialidade}}</td>
+                    <td class="text-center">{{func.Data_inicio_consulta}}</td>
+                    <td class="text-center">{{func.Hora_inicio}}</td>
+                    <td class="text-center">{{func.Data_fim_consulta}}</td>
+                    <td class="text-center">{{func.Hora_fim}}</td>
+                    <td class="text-center">{{func.Observacao}}</td>
+                    <td class="text-center" style="width: 200px;">
+                        <a href="#"
+                           data-target="#AtualizarConsulta"
+                           data-toggle="modal" class="btn btn-success"
+                           ng-click="atualizarConsultaPorId(func)">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                        <a href="#"
+                           data-target="#ExcluirConsulta"
+                           id="btnExcluir"
+                           data-toggle="modal" class="btn btn-danger"
+                           ng-click="excluirConsultaPorId(func)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        @* INÍCIO MODAL *@
+        <div class="modal" id="AdicionarConsulta" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="text-info">Nova Consulta</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" name="AdicionarNovaConsultaForm">
+                            <div class="form-group">
+                                <input class="form-control" readonly="readonly" name="consultaId" type="hidden" placeholder="Id Consulta" />
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="paciente" ng-model="paciente" placeholder="Paciente" />
+                            </div>
+                            <h4 class="text-info">Data de Nascimento</h4>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="DataNascimento" ng-model="datanascimento" placeholder="Data Nascimento" />
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="medico" ng-model="medico" placeholder="Medico" />
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="especialidade" ng-model="especialidade" placeholder="Especialidade" />
+                            </div>
+                            <h4 class="text-info">Data inicio</h4>
+                            <div class="form-group">
+                                <input class="form-control" type="text" id="dataInicio" name="DataInicio" ng-model="datainicio" placeholder="Data Inicio" />
+                            </div>
+                            <h4 class="text-info">Horario inicio</h4>
+                            <div class="form-group">
+                                <input class="form-control" type="text" id="horaInicio" name="HoraInicio" ng-model="horainicio" placeholder="Hora Inicio" />
+                            </div>
+                            <h4 class="text-info">Data fim</h4>
+                            <div class="form-group">
+                                <input class="form-control" type="text" id="dataFim" name="DataFim" ng-model="datafim" placeholder="Data Fim" />
+                            </div>
+                            <h4 class="text-info">Hora fim</h4>
+                            <div class="form-group">
+                                <input class="form-control" type="text" id="horaFim" name="HoraFim" ng-model="horafim" placeholder="Hora Fim" />
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="observacao" ng-model="observacao" placeholder="Observacão" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="btnSalvar" data-dismiss="modal" ng-click="adicionarConsulta()">Adicionar</button>
+                        <button>
+                            teste
+
+
+                            <script>
+                                var DataIncio = document.getElementById('dataInicio').value
+                                var DataFim = document.getElementById('dataFim').value
+
+                                var HoraIncio = document.getElementById('horaInicio').value
+                                var HoraFim = document.getElementById('horaFim').value
+
+                                if (DataIncio.getTime() > DataFim.getTime()) {
+                                    alert("Data Fim menor que data de Inicio!");
+                                   
+
+                                }
+
+                            </script>
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="limparDados()">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @* FIM MODAL *@
+        @* INÍCIO MODAL - UPDATE *@
+        <div class="modal" id="AtualizarConsulta" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="text-info">Atualizar Consultas</h3>
+                    </div>
+                    <div class="modal-body" style="margin-left: 20px">
+                        <form class="form-horizontal" name="AtualizarForm">
+                            <div class="form-group">
+                                <input class="form-control" readonly="readonly" name="ConsultaId" ng-model="AtualizadoConsultaId" type="hidden" placeholder="Id" />
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="paciente" ng-model="paciente" placeholder="Paciente" />
+                            </div>
+                            <h4 class="text-info">Data de Nascimento</h4>
+                            <div class="form-group">
+                                <input class="form-control" type="date" name="DataNascimento" ng-model="datanascimento" placeholder="Data Nascimento" />
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="medico" ng-model="medico" placeholder="Medico" />
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="especialidade" ng-model="especialidade" placeholder="Especialidade" />
+                            </div>
+                            <h4 class="text-info">Data inicio</h4>
+                            <div class="form-group">
+                                <input class="form-control" type="date" name="DataInicio" ng-model="datainicio" placeholder="Data Inicio" />
+                            </div>
+                            <h4 class="text-info">Horario inicio</h4>
+                            <div class="form-group">
+                                <input class="form-control" type="time" name="HoraInicio" ng-model="horainicio" placeholder="Hora Inicio" />
+                            </div>
+                            <h4 class="text-info">Data fim</h4>
+                            <div class="form-group">
+                                <input class="form-control" type="date" name="DataFim" ng-model="datafim" placeholder="Data Fim" />
+                            </div>
+                            <h4 class="text-info">Hora fim</h4>
+                            <div class="form-group">
+                                <input class="form-control" type="time" name="HoraFim" ng-model="horafim" placeholder="Hora Fim" />
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="observacao" ng-model="observacao" placeholder="Observacão" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="btnUpdate" data-dismiss="modal" ng-click="atualizarConsulta()">
+                            Atualizar
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @* FIM MODAL - UPDATE *@
+        @* INÍCIO MODAL - EXCLUIR *@
+        <div class="modal" role="dialog" id="ExcluirConsulta">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="text-info">Você tem certeza que deseja excluir esta consulta?</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <p>Id da Consulta : {{AtualizadoConsultaId}}</p>
+                            <p>Nome do Paciente : {{AtualizadoPaciente}}</p>
+                            <p>Nome do Medico : {{AtualizadoMedico}}</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="excluirConsulta(AtualizadoConsultaId)">Excluir</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @* FIM MODAL - EXCLUIR *@
+    </div>
+    @* FIM DIV - panel panel-info *@
+</div>
+@section scripts {
+    <script src="~/AngularJsApp/Consulta/Module.js"></script>
+    <script src="~/AngularJsApp/Consulta/Service.js"></script>
+    <script src="~/AngularJsApp/Consulta/Controller.js"></script>
+}

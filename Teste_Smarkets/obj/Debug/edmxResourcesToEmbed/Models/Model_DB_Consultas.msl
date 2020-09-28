@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DB_ConsultasModelStoreContainer" CdmEntityContainer="DB_ConsultasEntities">
+    <EntitySetMapping Name="Consultas">
+      <EntityTypeMapping TypeName="DB_ConsultasModel.Consulta">
+        <MappingFragment StoreEntitySet="Consulta">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Paciente" ColumnName="Paciente" />
+          <ScalarProperty Name="Data_Nascimento" ColumnName="Data_Nascimento" />
+          <ScalarProperty Name="Medico" ColumnName="Medico" />
+          <ScalarProperty Name="Especialidade" ColumnName="Especialidade" />
+          <ScalarProperty Name="Data_Inicio_Cons" ColumnName="Data_Inicio_Cons" />
+          <ScalarProperty Name="Hora_Inicio_Cons" ColumnName="Hora_Inicio_Cons" />
+          <ScalarProperty Name="Data_Fim_Cons" ColumnName="Data_Fim_Cons" />
+          <ScalarProperty Name="Hora_Fim_Cons" ColumnName="Hora_Fim_Cons" />
+          <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
